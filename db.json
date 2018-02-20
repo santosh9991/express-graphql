@@ -1,11 +1,34 @@
 {
-"users":[
-  {"id":"10","firstName":"santu","age":27,"companyId":"1"},
-  {"id":"11","firstName":"kittu","age":25,"companyId":"2"},
-  {"id":"12","firstName":"chiki","age":25,"companyId":"2"}
-],
-"companies":[
-  {"id":"1","name":"Apple","description":"Apple"},
-  {"id":"2","name":"Google","description":"Search"}
-]
+  "users": [
+    {
+      "id": "10",
+      "firstName": "santu",
+      "age": 27,
+      "companyId": "1"
+    },
+    {
+      "id": "11",
+      "firstName": "kittu",
+      "age": 20,
+      "companyId": "2"
+    },
+    {
+      "id": "12",
+      "firstName": "chiki",
+      "age": 25,
+      "companyId": "2"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "Apple",
+      "description": "Apple"
+    },
+    {
+      "id": "2",
+      "name": "Google",
+      "description": "Search"
+    }
+  ]
 }

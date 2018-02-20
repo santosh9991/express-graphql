@@ -60,6 +60,51 @@ const RootQuery = new graphql.GraphQLObjectType({
     }
   }
 });
+
+const mutation = new graphql.GraphQLObjectType({
+  //Mutation helps in modifying or creating objects
+  name: 'Mutation',
+  fields: {
+    addUser: {
+    //type of record that we are going to return
+    type: UserType,
+    //Arguments required to create a user object
+    args: {
+      //firstName and age are required fields
+      firstName: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
+      age: {type: new graphql.GraphQLNonNull(graphql.GraphQLInt)},
+      companyId: {type: graphql.GraphQLString}
+    },
+    resolve(parentValue,{firstName,age}){
+      return axios.post('http://localhost:3000/users',{firstName,age}).
+      then(res=>res.data)
+    }
+  },
+  deleteUser: {
+    type: UserType,
+    args: {
+      id: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)}
+    },
+    resolve(parentValue,args){
+      return axios.delete(`http://localhost:3000/users/${args.id}`)
+      .then(res=>res.data)
+    }
+  },
+  editUser:{
+    type: UserType,
+    args: {
+      id: {type: new graphql.GraphQLNonNull(graphql.GraphQLString)},
+      firstName: {type: graphql.GraphQLString},
+      companyId: {type: graphql.GraphQLString},
+      age: {type:graphql.GraphQLInt}
+    },
+    resolve(parentValue,args){
+      return axios.patch(`http://localhost:3000/users/${args.id}`,args).then(res=>res.data);
+    }
+  }
+}
+})
 module.exports = new graphql.GraphQLSchema({
-  query: RootQuery
+  query: RootQuery,
+  mutation//mutation:mutation
 });
